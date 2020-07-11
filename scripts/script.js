@@ -1,16 +1,16 @@
 let profile = document.querySelector('.profile');
 let editButton = profile.querySelector('.profile__edit-button');
 
-let name = profile.querySelector('.profile__title');
-let job = profile.querySelector('.profile__subtitle');
+let name = profile.querySelector('.profile__name');
+let job = profile.querySelector('.profile__job');
 
 let popup = document.querySelector('.popup');
 let popupClose = popup.querySelector('.popup__close');
 let formElement = popup.querySelector('.popup__container');
 let saveButton = formElement.querySelector('.popup__save');
 
-let nameInput = formElement.querySelector('.popup__title');
-let jobInput = formElement.querySelector('.popup__subtitle');
+let nameInput = formElement.querySelector('.popup__name');
+let jobInput = formElement.querySelector('.popup__job');
 
 
 function showPopup() { /*Функция отображает попап*/
