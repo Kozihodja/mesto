@@ -18,14 +18,25 @@
 			<img class="profile__avatar" src="images/avatar.png">
 			<ul class="profile__info">
 				<li>
-					<h1 class="profile__title">Жак-Ив Кусто</h1>
+					<h1 class="profile__name">Жак-Ив Кусто</h1>
 					<button class="profile__edit-button button-hover"><img src="images/edit.svg" class="profile__edit-icon"></button>
 				</li>
-				<li><h2 class="profile__subtitle">Исследователь океана</h2></li>
+				<li><h2 class="profile__job">Исследователь океана</h2></li>
 			</ul>
-			<button class="profile__add-button button-hover"><img src="images/plus.svg"></a></button>
+			<button class="profile__add-button button-hover"><img src="images/plus.svg"></button>
 		</section>
-		
+
+		<section class="popup">
+			<div class="popup__overlay"></div>
+			<img src="images/plus.svg" class="popup__close button-hover">
+			<form class="popup__container">
+				<p class="popup__form-title">Редактировать профиль</p>
+				<input type="text" class="popup__title">
+				<input type="text" class="popup__subtitle">
+				<input type="submit" value="Сохранить" class="popup__save">
+			</form>
+		</section>
+
 		<section class="elements">
 			<div class="element">
 				<img src="images/karachaevsk.png" class="element__img">
@@ -69,6 +80,6 @@
 	<footer class="footer">
 		<p class="footer__coryright">&#169; Mesto Russia</p>
 	</footer>
-	<script src="script/script.js"></script>
+	<script src="scripts/script.js"></script>
 </body>
 </html>

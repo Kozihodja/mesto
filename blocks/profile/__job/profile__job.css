@@ -1,5 +1,5 @@
 @media screen and (max-width: 881px) {
-  .profile__subtitle {
+  .profile__job {
     font-size: 14px;
 		line-height: 17px;
 		text-align: center;
@@ -8,13 +8,13 @@
 }
 
 @media screen and (min-width: 882px) {
-  .profile__subtitle {
+  .profile__job {
     font-size: 18px;
 		line-height: 22px;
   }
 }
 
-.profile__subtitle {
+.profile__job {
 	font-weight: 1;
 	margin: 0;
 }
