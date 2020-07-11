@@ -1,0 +1,7 @@
+.element__img {
+	grid-area: 1 / 1 / 2 / 3;
+	border-radius: 10px 10px 0 0;
+	vertical-align: bottom;
+	margin: 0;
+	padding: 0;
+}
