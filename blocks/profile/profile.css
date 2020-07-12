@@ -1,4 +1,4 @@
-@media screen and (max-width: 881px) {
+@media screen and (max-width: 921px) {
   .profile {
     padding-top: 38px;
     display: flex;
@@ -6,7 +6,7 @@
   }
 }
 
-@media screen and (min-width: 882px) {
+@media screen and (min-width: 922px) {
   .profile {
     display: flex;
     flex-direction: row;

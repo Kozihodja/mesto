@@ -13,15 +13,17 @@ let nameInput = formElement.querySelector('.popup__name');
 let jobInput = formElement.querySelector('.popup__job');
 
 
-function showPopup() { /*Функция отображает попап*/
-    popup.classList.add('popup_opened');
-
+function controlPopup() { /*Функция отображает попап*/
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
-}
 
-function closePopup() { /*Функция скрывает попап*/
-   popup.classList.remove('popup_opened');
+    if (popup.classList.contains('popup_opened')) {
+    	popup.classList.remove('popup_opened');
+    }
+
+    else {
+    	popup.classList.add('popup_opened');
+    }
 }
 
 function formSubmitHandler (evt) { /*Функция редактирования Имени и профессии*/
@@ -30,10 +32,10 @@ function formSubmitHandler (evt) { /*Функция редактирования
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
 
-    closePopup();
+    controlPopup();
 }
 
 
-editButton.addEventListener('click', showPopup);
-popupClose.addEventListener('click', closePopup);
+editButton.addEventListener('click', controlPopup);
+popupClose.addEventListener('click', controlPopup);
 formElement.addEventListener('submit', formSubmitHandler);

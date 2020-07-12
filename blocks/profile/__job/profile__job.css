@@ -1,13 +1,12 @@
-@media screen and (max-width: 881px) {
+@media screen and (max-width: 921px) {
   .profile__job {
     font-size: 14px;
 		line-height: 17px;
 		text-align: center;
-		padding-bottom: 36px;
   }
 }
 
-@media screen and (min-width: 882px) {
+@media screen and (min-width: 922px) {
   .profile__job {
     font-size: 18px;
 		line-height: 22px;
@@ -15,6 +14,7 @@
 }
 
 .profile__job {
+	grid-area: 2 / 1 / 3 / 3;
 	font-weight: 1;
 	margin: 0;
 }

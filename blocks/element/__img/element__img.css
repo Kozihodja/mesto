@@ -1,5 +1,5 @@
 .element__img {
-	grid-area: 1 / 1 / 2 / 3;
+	min-height: 282px;
 	border-radius: 10px 10px 0 0;
 	vertical-align: bottom;
 	margin: 0;

@@ -9,77 +9,88 @@
 <body class="root">
 	<header class="header">
 		<img src="images/logo.svg" class="header__logo" alt="логотип">
-		<div class="header__line"></div>
 	</header>
 
 	<main class="main">
 
 		<section class="profile">
 			<img class="profile__avatar" src="images/avatar.png" alt="Аватар">
-			<ul class="profile__info">
-				<li>
-					<h1 class="profile__name">Жак-Ив Кусто</h1>
-					<button class="profile__edit-button button-hover"></button>
-				</li>
-				<li><h2 class="profile__job">Исследователь океана</h2></li>
-			</ul>
+			<div class="profile__info">
+				<h1 class="profile__name">Жак-Ив Кусто</h1>
+				<button class="profile__edit-button button-hover"></button>
+				<p class="profile__job">Исследователь океана</p>
+			</div>
 			<button class="profile__add-button button-hover"></button>
 		</section>
 
-		<section class="popup">
-			<div class="popup__overlay"></div>
-			<img src="images/plus.svg" class="popup__close button-hover">
-			<form class="popup__container">
-				<p class="popup__form-title">Редактировать профиль</p>
-				<input type="text" class="popup__name">
-				<input type="text" class="popup__job">
-				<input type="submit" value="Сохранить" class="popup__save">
-			</form>
-		</section>
-
-		<section class="elements">
-			<div class="element">
+		<ul class="elements">
+			<li class="element">
 				<img src="images/karachaevsk.png" class="element__img" alt="Карачаевск">
-				<p class="element__title">Карачаевск</p>
-				<button class="element__like-button button-hover"></button>
-			</div>
+				<div class="element__content">
+					<h2 class="element__title">Карачаевск</h2>
+					<button class="element__like-button button-hover"></button>
+				</div>
+			</li>
 
-			<div class="element">
+			<li class="element">
 				<img src="images/elbrus.png" class="element__img" alt="Гора Эльбрус">
-				<p class="element__title">Гора Эльбрус</p>
-				<button class="element__like-button button-hover"></button>
-			</div>
+				<div class="element__content">
+					<h2 class="element__title">Гора Эльбрус</h2>
+					<button class="element__like-button button-hover"></button>
+				</div>
+			</li>
 
-			<div class="element">
+			<li class="element">
 				<img src="images/dombai.png" class="element__img" alt="Домбай">
-				<p class="element__title">Домбай</p>
-				<button class="element__like-button button-hover"></button>
-			</div>
+				<div class="element__content">
+					<h2 class="element__title">Домбай</h2>
+					<button class="element__like-button button-hover"></button>
+				</div>
+			</li>
 
-			<div class="element">
+			<li class="element">
 				<img src="images/elbrus.png" class="element__img" alt="Гора Эльбрус">
-				<p class="element__title">Гора Эльбрус</p>
-				<button class="element__like-button button-hover"></button>
-			</div>
+				<div class="element__content">
+					<h2 class="element__title">Гора Эльбрус</h2>
+					<button class="element__like-button button-hover"></button>
+				</div>
+			</li>
 
-			<div class="element">
+			<li class="element">
 				<img src="images/dombai.png" class="element__img" alt="Домбай">
-				<p class="element__title">Домбай</p>
-				<button class="element__like-button button-hover"></button>
-			</div>
+				<div class="element__content">
+					<h2 class="element__title">Домбай</h2>
+					<button class="element__like-button button-hover"></button>
+				</div>
+			</li>
 
-			<div class="element">
+			<li class="element">
 				<img src="images/karachaevsk.png" class="element__img" alt="Карачаевск">
-				<p class="element__title">Карачаево-Черкесия</p>
-				<button class="element__like-button button-hover"></button>
-			</div>
-		</section>
+				<div class="element__content">
+					<h2 class="element__title">Карачаево-Черкесия</h2>
+					<button class="element__like-button button-hover"></button>
+				</div>
+			</li>
+		</ul>
 
 	</main>
 
 	<footer class="footer">
 		<p class="footer__coryright">&#169; Mesto Russia</p>
 	</footer>
+
+	<section class="popup">
+		<div class="popup__container">
+			<button class="popup__close button-hover"></button>
+			<h2 class="popup__form-title">Редактировать профиль</h2>
+			<form class="popup__form" name="">
+				<input type="text" class="popup__name">
+				<input type="text" class="popup__job">
+				<button type="submit" class="popup__save">Сохранить</button>
+			</form>
+		</div>
+	</section>
+
 	<script src="scripts/script.js"></script>
 </body>
 </html>
