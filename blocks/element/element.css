@@ -4,7 +4,7 @@
 	width: 282px;
 	background: #fff;
 	display: grid;
-	grid-template-columns: repeat(2, auto-fit);
+	grid-template-columns: auto 43px;
 	grid-row-gap: 25px;
 	padding-bottom: 31px;
 }
