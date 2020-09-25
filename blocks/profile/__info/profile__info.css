@@ -19,7 +19,6 @@
 
 
 .profile__info {
-	display: grid;
-	grid-template-columns: 1fr 24px;
+	display: grid;	grid-template-columns: 1fr 24px;
 	grid-template-rows: repeat(2, auto);
 }
