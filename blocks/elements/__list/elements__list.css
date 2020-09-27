@@ -1,17 +1,17 @@
 @media screen and (max-width: 921px) {
-  .elements {
+  .elements__list {
     padding: 36px 0px 0px 0px;
   }
 }
 
 @media screen and (min-width: 922px) {
-  .elements {
+  .elements__list {
     padding: 47px 0px 0px 0px;
   }
 }
 
 
-.elements {
+.elements__list {
 	max-width: 882px;
 	margin: 0 auto;
 	list-style: none;

@@ -10,16 +10,21 @@ let formElement = popup.querySelector('.popup__form');
 let nameInput = formElement.querySelector('.popup__name');
 let jobInput = formElement.querySelector('.popup__job');
 
-function controlPopup() { /*Функция отображает попап*/
+function controlPopup() { /*Функция открывает или закрывает попап.*/
 
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
+    if (popup.classList.contains('popup_opened')) {
+        popup.classList.remove('popup_opened');
+    }
 
-    popup.classList.toggle('popup_opened')
-    
+    else {
+        nameInput.value = name.textContent;
+        jobInput.value = job.textContent;
+
+        popup.classList.add('popup_opened');
+    }
 }
 
-function formSubmitHandler (evt) { /*Функция редактирования Имени и профессии*/
+function formSubmitHandler(evt) { /*Функция сохраняет введеные данные*/
     evt.preventDefault();
 
     name.textContent = nameInput.value;

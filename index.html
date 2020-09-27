@@ -25,8 +25,8 @@
 			<button type="button" class="profile__add-button button-hover" aria-label="Добавить"></button>
 		</section>
 
-		<section>
-			<ul class="elements">
+		<section class="elements">
+			<ul class="elements__list">
 				<li class="element">
 					<img src="images/karachaevsk.png" class="element__img" alt="Карачаевск">
 					<div class="element__content">
@@ -80,7 +80,7 @@
 	</main>
 
 	<footer class="footer">
-		<p class="footer__coryright">&copy; Mesto Russia</p>
+		<p class="footer__coryright">&copy; 2020 Mesto Russia</p>
 	</footer>
 
 	<div class="popup">
@@ -88,8 +88,8 @@
 			<button type="button" class="popup__close button-hover" aria-label="Закрыть"></button>
 			<h3 class="popup__form-title">Редактировать профиль</h3>
 			<form class="popup__form" name="profile-edit-form" method="post">
-				<input type="text" class="popup__name">
-				<input type="text" class="popup__job">
+				<input type="text" name="userName"class="popup__name">
+				<input type="text" name="userJob"class="popup__job">
 				<button type="submit" class="popup__save" aria-label="Сохранить">Сохранить</button>
 			</form>
 		</div>
