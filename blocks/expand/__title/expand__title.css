@@ -1,0 +1,10 @@
+.expand__title {
+    display: flex;
+    color: white;
+    margin: 10px 0px 0px 0px;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    font-style: normal;
+}

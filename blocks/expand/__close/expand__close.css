@@ -1,0 +1,32 @@
+@media screen and (max-width: 519px) {
+    .expand__close {
+      width: 20px;
+      height: 20px;
+      top: -20px;
+      right: -20px;
+    }
+  }
+  
+  @media screen and (min-width: 520px) {
+    .expand__close {
+      width: 40.7px;
+      height: 40.7px;
+      top: -40.7px;
+      right: -40.7px;
+    }
+  }
+  
+  
+  .expand__close {
+      z-index: 1;
+      transform: rotate(45deg);
+    position: absolute;
+    padding: 0;
+    background-image: url(../../../images/plus.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+} 

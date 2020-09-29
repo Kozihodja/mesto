@@ -1,6 +1,7 @@
-.popup {
+.expand {
 	visibility: hidden;
-	display: flex;
+    display: flex;
+    flex-direction: column;
 	position: fixed;
 	width: 100%;
 	top: 0;
