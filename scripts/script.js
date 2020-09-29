@@ -43,7 +43,7 @@ const initialCards = [
 
 // Функция поставить убрать лайк
 function liked(el) {
-    el.querySelector('.element__like-icon').addEventListener('click', function (evt) {
+    el.querySelector('.element__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like-icon_liked');
     });
 }
@@ -65,7 +65,6 @@ function openPopupImg(el) {
         expand.querySelector('.expand__img').src = card.querySelector('.element__img').src;
         expand.querySelector('.expand__title').textContent = card.querySelector('.element__title').textContent;
         expand.querySelector('.expand__img').alt = card.querySelector('.element__img').textContent;
-
     });
 }
 // Функция добавления новой карточки
@@ -126,5 +125,5 @@ closeAddForm.addEventListener('click', () => {popupAdd.classList.toggle('popup_o
 // Добавление новой карточки
 placeAddForm.addEventListener('submit', newCard);
 
-const closePopurImg = document.querySelector('.expand__close');
-closePopurImg.addEventListener('click', () => {document.querySelector('.expand').classList.toggle('expand_opened')});
+// const closePopurImg = document.querySelector('.expand__close');
+// closePopurImg.addEventListener('click', () => {document.querySelector('.expand').classList.toggle('expand_opened')});
