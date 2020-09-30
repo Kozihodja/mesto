@@ -107,16 +107,15 @@ function createNewCard(title, src) {
 
     return element;
 }
-// Функция выводит на экран карточки
-function showNewCard (title, src) {
-    const cardSection = document.querySelector('.elements__list');
-    const result = createNewCard(title, src);
-    cardSection.prepend(result);
+// Функция выводит на экран карточки вначале дом элемента
+function showNewCard (domEl, title, src) {
+    const cardSection = document.querySelector(domEl);
+    cardSection.prepend(createNewCard(title, src));
 }
 
 // Цикл выводит на экран содержание массива initialCards
 initialCards.forEach( function(card) {
-    showNewCard(card.name, card.link);
+    showNewCard('.elements__list', card.name, card.link);
     }
 );
 
@@ -127,8 +126,7 @@ function addNewCard (evt) {
     const placeName = popupAdd.querySelector('.popup__name').value;
     const placeLink = popupAdd.querySelector('.popup__job').value;
 
-    showNewCard(placeName, placeLink);
-
+    showNewCard('.elements__list', placeName, placeLink);
     togglePopup(popupAdd, 'popup_opened');
 }
 
