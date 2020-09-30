@@ -83,7 +83,7 @@ function hendlerImgCliked(el) {
 }
 
 // Функция добавляет или удаляет класс у элемента
-function controlPopup(elName, className) {
+function togglePopup(elName, className) {
     elName.classList.toggle(className);
 }
 
@@ -91,7 +91,6 @@ function controlPopup(elName, className) {
 function createNewCard(title, src) {
 
     const newCardTemplate = document.querySelector('#element').content;
-    const cardSection = document.querySelector('.elements__list');
     const element = newCardTemplate.cloneNode(true);
 
     const elementImg =  element.querySelector('.element__img');
@@ -106,12 +105,18 @@ function createNewCard(title, src) {
     handlerDeleteButton(element);
     hendlerImgCliked(element);
 
-    cardSection.prepend(element);
+    return element;
+}
+// Функция выводит на экран карточки
+function showNewCard (title, src) {
+    const cardSection = document.querySelector('.elements__list');
+    const result = createNewCard(title, src);
+    cardSection.prepend(result);
 }
 
 // Цикл выводит на экран содержание массива initialCards
-initialCards.forEach( function(card, i, arr) {
-    createNewCard(card.name, card.link);
+initialCards.forEach( function(card) {
+    showNewCard(card.name, card.link);
     }
 );
 
@@ -122,32 +127,32 @@ function addNewCard (evt) {
     const placeName = popupAdd.querySelector('.popup__name').value;
     const placeLink = popupAdd.querySelector('.popup__job').value;
 
-    createNewCard(placeName, placeLink);
+    showNewCard(placeName, placeLink);
 
-    controlPopup(popupAdd, 'popup_opened');
+    togglePopup(popupAdd, 'popup_opened');
 }
 
 // Открытие формы редактирования профиля
 editButton.addEventListener('click', () => {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
-    controlPopup(popup, 'popup_opened');
+    togglePopup(popup, 'popup_opened');
 }
 );
 // Закрытие формы редактирования профиля
-popupClose.addEventListener('click', () => controlPopup(popup, 'popup_opened'));
+popupClose.addEventListener('click', () => togglePopup(popup, 'popup_opened'));
 // Сохранение введеных данных в форме профиля
 formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    controlPopup(popup, 'popup_opened');
+    togglePopup(popup, 'popup_opened');
 });
 // Открытие формы добавления новой карточки
-addButton.addEventListener('click', () => controlPopup(popupAdd, 'popup_opened'));
+addButton.addEventListener('click', () => togglePopup(popupAdd, 'popup_opened'));
 // Закрытие формы добавления новой карточки
-closeAddForm.addEventListener('click', () => controlPopup(popupAdd, 'popup_opened'));
+closeAddForm.addEventListener('click', () => togglePopup(popupAdd, 'popup_opened'));
 // Добавление новой карточки
 placeAddForm.addEventListener('submit', addNewCard);
 // Закрытие показа фотографий
-closePopurImgButton.addEventListener('click', () => controlPopup(expand, 'expand_opened'));
+closePopurImgButton.addEventListener('click', () => togglePopup(expand, 'expand_opened'));
