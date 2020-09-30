@@ -132,5 +132,6 @@ closeAddForm.addEventListener('click', () => controlPopup(popupAdd));
 // Добавление новой карточки
 placeAddForm.addEventListener('submit', addNewCard);
 // Закрытие показа фотографий
-const closePopurImg = document.querySelector('.expand__close');
-closePopurImg.addEventListener('click', () => {document.querySelector('.expand').classList.toggle('expand_opened')});
+const closePopurImgButton = document.querySelector('.expand__close');
+const expand = document.querySelector('.expand');
+closePopurImgButton.addEventListener('click', () => {expand.classList.toggle('expand_opened')});
