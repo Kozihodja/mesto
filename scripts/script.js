@@ -44,11 +44,18 @@ const initialCards = [
     }
 ];
 
+// Функция добавляет или удаляет класс у элемента
+function togglePopup(elName, className) {
+    elName.classList.toggle(className);
+}
+
 // Обработчик события нажатия на кнопку лайк
 function handlerLikeButton(el) {
     const likeButton = el.querySelector('.element__like-button');
     likeButton.addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like-icon_liked');
+        const handlerElement = evt.currentTarget;
+        const likeIcon = handlerElement.querySelector('.element__like-icon');
+        togglePopup(likeIcon, 'element__like-icon_liked')
     });
 }
 
@@ -80,11 +87,6 @@ function hendlerImgCliked(el) {
 
         expand.classList.toggle('expand_opened');
     });
-}
-
-// Функция добавляет или удаляет класс у элемента
-function togglePopup(elName, className) {
-    elName.classList.toggle(className);
 }
 
 // Функция создает новую карточку

@@ -2,4 +2,6 @@
     width: 20.76px;
     height: 18.13px;
     fill: white;
+    z-index: -1;
+    transition: all 600ms ease-in-out;
 }
