@@ -14,6 +14,9 @@ const closeAddForm = popupAdd.querySelector('.popup__close');
 const addElement = popupAdd.querySelector('.popup__save');
 const placeAddForm = popupAdd.querySelector('.popup__form');
 
+const expand = document.querySelector('.expand');
+const closePopurImgButton = expand.querySelector('.expand__close');
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -68,9 +71,9 @@ function hendlerImgCliked(el) {
     });
 }
 
-// Функция добавляет или удаляет класс popup_opened у элемента
-function controlPopup(el) {
-    el.classList.toggle('popup_opened');
+// Функция добавляет или удаляет класс у элемента
+function controlPopup(elName, className) {
+    elName.classList.toggle(className);
 }
 
 // Функция создает новую карточку
@@ -106,32 +109,30 @@ function addNewCard (evt) {
 
     createNewCard(placeName, placeLink);
 
-    controlPopup(popupAdd);
+    controlPopup(popupAdd, 'popup_opened');
 }
 
 // Открытие формы редактирования профиля
 editButton.addEventListener('click', () => {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
-    controlPopup(popup);
+    controlPopup(popup, 'popup_opened');
 }
 );
 // Закрытие формы редактирования профиля
-popupClose.addEventListener('click', () => controlPopup(popup));
+popupClose.addEventListener('click', () => controlPopup(popup, 'popup_opened'));
 // Сохранение введеных данных в форме профиля
 formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    controlPopup(popup);
+    controlPopup(popup, 'popup_opened');
 });
 // Открытие формы добавления новой карточки
-addButton.addEventListener('click', () => controlPopup(popupAdd));
+addButton.addEventListener('click', () => controlPopup(popupAdd, 'popup_opened'));
 // Закрытие формы добавления новой карточки
-closeAddForm.addEventListener('click', () => controlPopup(popupAdd));
+closeAddForm.addEventListener('click', () => controlPopup(popupAdd, 'popup_opened'));
 // Добавление новой карточки
 placeAddForm.addEventListener('submit', addNewCard);
 // Закрытие показа фотографий
-const closePopurImgButton = document.querySelector('.expand__close');
-const expand = document.querySelector('.expand');
-closePopurImgButton.addEventListener('click', () => {expand.classList.toggle('expand_opened')});
+closePopurImgButton.addEventListener('click', () => controlPopup(expand, 'expand_opened'));
