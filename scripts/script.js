@@ -46,14 +46,16 @@ const initialCards = [
 
 // Обработчик события нажатия на кнопку лайк
 function handlerLikeButton(el) {
-    el.querySelector('.element__like-button').addEventListener('click', function (evt) {
+    const likeButton = el.querySelector('.element__like-button');
+    likeButton.addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like-icon_liked');
     });
 }
 
 // Обработчик события нажатия иконки удалить
 function handlerDeleteButton(el) {
-    el.querySelector('.element__delete-icon').addEventListener('click', function (evt) {
+    const deleteButton = el.querySelector('.element__delete-icon');
+    deleteButton.addEventListener('click', function (evt) {
         evt.target.parentNode.remove();
     });
 }
@@ -64,10 +66,19 @@ function hendlerImgCliked(el) {
         const card = evt.target.parentNode;
 
         const expand = document.querySelector('.expand');
+        const expandImg = expand.querySelector('.expand__img');
+        const expandTitle = expand.querySelector('.expand__title');
+        const expandImgAlt = expand.querySelector('.expand__img');
+
+        const cardImg = card.querySelector('.element__img');
+        const cardTitle = card.querySelector('.element__title');
+        const cardImgAlt = card.querySelector('.element__img');
+
+        expandImg.src = cardImg.src;
+        expandTitle.textContent = cardTitle.textContent;
+        expandImgAlt.alt = cardImgAlt.textContent;
+
         expand.classList.toggle('expand_opened');
-        expand.querySelector('.expand__img').src = card.querySelector('.element__img').src;
-        expand.querySelector('.expand__title').textContent = card.querySelector('.element__title').textContent;
-        expand.querySelector('.expand__img').alt = card.querySelector('.element__img').textContent;
     });
 }
 
@@ -83,9 +94,13 @@ function createNewCard(title, src) {
     const cardSection = document.querySelector('.elements__list');
     const element = newCardTemplate.cloneNode(true);
 
-    element.querySelector('.element__img').src = src;
-    element.querySelector('.element__title').textContent = title;
-    element.querySelector('.element__img').alt = title;
+    const elementImg =  element.querySelector('.element__img');
+    const elementTitle = element.querySelector('.element__title');
+    const elementImgAlt = element.querySelector('.element__img');
+
+    elementImg.src = src;
+    elementTitle.textContent = title;
+    elementImgAlt.alt = `Фотография ${title}`;
 
     handlerLikeButton(element);
     handlerDeleteButton(element);
