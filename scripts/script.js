@@ -119,10 +119,10 @@ editButton.addEventListener('click', () => {
 // Закрытие формы редактирования профиля
 popupClose.addEventListener('click', () => controlPopup(popup));
 // Сохранение введеных данных в форме профиля
-formElement.addEventListener('submit', (evt) => { 
-    evt.preventDefault(); 
-    name.textContent = nameInput.value; 
-    job.textContent = jobInput.value; 
+formElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    name.textContent = nameInput.value;
+    job.textContent = jobInput.value;
     controlPopup(popup);
 });
 // Открытие формы добавления новой карточки
