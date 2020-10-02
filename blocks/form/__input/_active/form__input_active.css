@@ -12,7 +12,7 @@
 }
 
 .form__input {
-	transition: all 1200ms linear;
+	transition: all 800ms linear;
 }
 
 .form__input:focus {
