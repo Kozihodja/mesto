@@ -1,5 +1,7 @@
 const editProfileButton = document.querySelector(".profile__edit-button");
 
+const list = Array.from(document.querySelectorAll(".popup"));
+
 const popup = document.querySelector(".popup-edit");
 const editProfileForm = popup.querySelector(".form");
 const nameInput = editProfileForm.querySelector(".form__input_name");
@@ -125,8 +127,6 @@ function addNewCard(evt) {
   showNewCard(placeName.value, placeLink.value);
   togglePopup(popupAdd, "popup_opened");
 }
-
-const list = Array.from(document.querySelectorAll(".popup"));
 
 document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
