@@ -41,10 +41,12 @@
 		<div class="popup__container">
 			<button type="button" class="popup__close button-hover" aria-label="Закрыть"></button>
 			<h3 class="popup__form-title">Редактировать профиль</h3>
-			<form class="popup__form" name="profile-edit-form" method="post">
-				<input type="text" name="userName" class="popup__name">
-				<input type="text" name="userJob" class="popup__job">
-				<button type="submit" class="popup__save" aria-label="Сохранить">Сохранить</button>
+			<form class="form" name="profile-edit-form" method="post" novalidate>
+				<input type="text" name="userName" id="name-input" class="form__input form__input_name form__input_type_focus" required minlength="2" maxlength="8">
+				<span id="name-input-error" class="form__input-error"></span>
+				<input type="text" name="userJob" id="job-input" class="form__input form__input_job form__input_type_focus" required minlength="2" maxlength="200">
+				<span id="job-input-error" class="form__input-error"></span>
+				<button type="submit" class="form__submit" aria-label="Сохранить">Сохранить</button>
 			</form>
 		</div>
 	</div>
@@ -53,10 +55,12 @@
 		<div class="popup__container">
 			<button type="button" class="popup__close button-hover" aria-label="Закрыть"></button>
 			<h3 class="popup__form-title">Новое место</h3>
-			<form class="popup__form" name="element-add-form" method="post">
-				<input type="text" name="placeName" class="popup__name" placeholder="Название">
-				<input type="text" name="placeImg" class="popup__job" placeholder="Ссылка на картинку">
-				<button type="submit" class="popup__save" aria-label="Сохранить">Сохранить</button>
+			<form class="form" name="element-add-form" method="post" novalidate>
+				<input type="text" name="placeName" id="place-input" class="form__input form__input_name form__input_type_focus" placeholder="Название" required minlength="2" maxlength="30">
+				<span id="place-input-error" class="form__input-error"></span>
+				<input type="url" name="placeImg" id="placeUrl-input" class="form__input form__input_job form__input_type_focus" placeholder="Ссылка на картинку" required>
+				<span id="placeUrl-input-error" class="form__input-error"></span>
+				<button type="submit" class="form__submit" aria-label="Сохранить">Сохранить</button>
 			</form>
 		</div>
 	</div>
@@ -76,9 +80,9 @@
 		</li>
 	</template>
 
-	<div class="expand">
+	<div class="popup expand">
 		<div class="expand__container">
-			<button type="button" class="expand__close button-hover" aria-label="Закрыть"></button>
+			<button type="button" class="popup__close button-hover" aria-label="Закрыть"></button>
 			<img class="expand__img">
 			<h2 class="expand__title"></h2>
 		</div>

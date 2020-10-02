@@ -1,21 +1,17 @@
-const editButton = document.querySelector('.profile__edit-button');
+const editProfileButton = document.querySelector('.profile__edit-button');
 
 const popup = document.querySelector('.popup-edit');
-const popupClose = popup.querySelector('.popup__close');
-const formElement = popup.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__name');
-const jobInput = formElement.querySelector('.popup__job');
+const editProfileForm = popup.querySelector('.form');
+const nameInput = editProfileForm.querySelector('.form__input_name');
+const jobInput = editProfileForm.querySelector('.form__input_job');
 const name = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
 
 const popupAdd = document.querySelector('.popup-add');
-const addButton = document.querySelector('.profile__add-button');
-const closeAddForm = popupAdd.querySelector('.popup__close');
-const addElement = popupAdd.querySelector('.popup__save');
-const placeAddForm = popupAdd.querySelector('.popup__form');
+const addNewPlaceButton = document.querySelector('.profile__add-button');
+const addNewPlaceForm = popupAdd.querySelector('.form');
 
 const expand = document.querySelector('.expand');
-const closePopurImgButton = expand.querySelector('.expand__close');
 
 const initialCards = [
     {
@@ -67,12 +63,12 @@ function handlerDeleteButton(el) {
     });
 }
 
+// Обработчик события нажатия изображение карточки
 function hendlerImgCliked(el) {
     const img = el.querySelector('.element__img');
     img.addEventListener('click', function (evt) {
         const card = evt.target.parentNode;
 
-        const expand = document.querySelector('.expand');
         const expandImg = expand.querySelector('.expand__img');
         const expandTitle = expand.querySelector('.expand__title');
         const expandImgAlt = expand.querySelector('.expand__img');
@@ -85,7 +81,7 @@ function hendlerImgCliked(el) {
         expandTitle.textContent = cardTitle.textContent;
         expandImgAlt.alt = cardImgAlt.textContent;
 
-        expand.classList.toggle('expand_opened');
+        expand.classList.toggle('popup_opened');
     });
 }
 
@@ -115,44 +111,147 @@ function showNewCard (domEl, title, src) {
     cardSection.prepend(createNewCard(title, src));
 }
 
+// Функция добавляет карточку на страницу
+function addNewCard (evt) {
+    evt.preventDefault();
+
+    const placeName = popupAdd.querySelector('.form__input_name').value;
+    const placeLink = popupAdd.querySelector('.form__input_job').value;
+
+    showNewCard('.elements__list', placeName, placeLink);
+    togglePopup(popupAdd, 'popup_opened');
+}
+
+// Функция устанавливает слушатели на кнопки закрытия попапа и оверлей попапа
+const setListenersSwitchForPopup = (section, selectedClass, toggledClass) => { 
+    // Записать все искомые элементы в массив List
+    const list = Array.from(section.querySelectorAll('.'+ selectedClass));
+
+    // установить слушатели на каждом элементе массива
+    list.forEach((listElement) => {
+        
+        const popupCloseButton = listElement.querySelector('.popup__close');
+
+        popupCloseButton.addEventListener('click', (evt) => {
+            togglePopup(evt.target.closest('.'+selectedClass), toggledClass);
+            
+        })
+
+        listElement.addEventListener('click', (evt) => {
+            if (evt.target.classList.contains(selectedClass)) {
+                togglePopup(evt.currentTarget, toggledClass)
+            }
+        });
+    });
+};
+
+// Функция добавляет класс с ошибкой для input и span
+const showInputError = (formElement, inputElement, errorMessage) => {
+
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+    inputElement.classList.add('form__input_type_error');
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add('form__input-error_active');
+};
+// Функция удаляет класс с ошибкой для input и span
+const hideInputError = (formElement, inputElement) => {
+
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+    inputElement.classList.remove('form__input_type_error');
+    errorElement.classList.remove('form__input-error_active');
+    errorElement.textContent = '';
+}; 
+  
+  // Функция проверки валидности поля
+const InputisValid = (formElement, inputElement) => {
+
+    if (!inputElement.validity.valid) {
+      showInputError(formElement, inputElement, inputElement.validationMessage);
+    } 
+    else {  
+      hideInputError(formElement, inputElement);
+    }
+};
+
+const hasInvalidInput = (inputList) => {
+    
+    return inputList.some((inputElement) => {
+         
+      return !inputElement.validity.valid;
+    })
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+    
+    if (hasInvalidInput(inputList)) {
+      buttonElement.classList.add('form__submit_inactive');
+    } 
+    else {
+      buttonElement.classList.remove('form__submit_inactive');
+    }
+};
+
+// Фунция ищет все поля в форме
+const setEventListeners = (formElement) => {
+
+    const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+    const buttonElement = formElement.querySelector('.form__submit');
+
+    toggleButtonState(inputList, buttonElement);
+
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+        InputisValid(formElement, inputElement);
+        toggleButtonState(inputList, buttonElement);
+      });
+    });
+};
+
+//   Функция ищет все формы на странице
+const enableValidation = () => {
+    const formList = Array.from(document.querySelectorAll('.form'));
+
+    formList.forEach((formElement) => {
+      formElement.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+      });
+      setEventListeners(formElement);
+    });
+};
+
 // Цикл выводит на экран содержание массива initialCards
 initialCards.forEach( function(card) {
     showNewCard('.elements__list', card.name, card.link);
     }
 );
 
-// Функция добавляет карточку на страницу
-function addNewCard (evt) {
-    evt.preventDefault();
-
-    const placeName = popupAdd.querySelector('.popup__name').value;
-    const placeLink = popupAdd.querySelector('.popup__job').value;
-
-    showNewCard('.elements__list', placeName, placeLink);
-    togglePopup(popupAdd, 'popup_opened');
-}
-
-// Открытие формы редактирования профиля
-editButton.addEventListener('click', () => {
+// При нажатии на кнопку редактировать открыть форму редактирования профиля
+editProfileButton.addEventListener('click', () => {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
     togglePopup(popup, 'popup_opened');
 }
 );
-// Закрытие формы редактирования профиля
-popupClose.addEventListener('click', () => togglePopup(popup, 'popup_opened'));
-// Сохранение введеных данных в форме профиля
-formElement.addEventListener('submit', (evt) => {
+
+// При нажатии на кнопку сохранить в форме редактирования профиля сохранить значения и закрыть форму
+editProfileForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
     togglePopup(popup, 'popup_opened');
 });
-// Открытие формы добавления новой карточки
-addButton.addEventListener('click', () => togglePopup(popupAdd, 'popup_opened'));
-// Закрытие формы добавления новой карточки
-closeAddForm.addEventListener('click', () => togglePopup(popupAdd, 'popup_opened'));
-// Добавление новой карточки
-placeAddForm.addEventListener('submit', addNewCard);
-// Закрытие показа фотографий
-closePopurImgButton.addEventListener('click', () => togglePopup(expand, 'expand_opened'));
+
+// При нажатии на кнопку добавить - открыть форму добавления новой карточки
+addNewPlaceButton.addEventListener('click', () => togglePopup(popupAdd, 'popup_opened'));
+// При нажатии на кнопку сохранить, в форме добавления новой карточки, 
+// добавит новую карточку и закрыть форму
+addNewPlaceForm.addEventListener('submit', addNewCard);
+// Вызов функции, которая ищет все попапы, и навешивает слушатели 
+// на события нажатия оверлея и кнопки закрыть
+setListenersSwitchForPopup(document, 'popup', 'popup_opened');
+// Вызов функции, которая ищет все формы, и внутри этих форм навешивает 
+// слушатели на события редактирования поля формы.
+// В зависимости от валидности полей активирует или деактивирует кнопку submit и сообщение с ошибкой
+enableValidation(); 

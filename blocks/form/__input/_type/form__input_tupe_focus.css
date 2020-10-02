@@ -1,0 +1,7 @@
+.form__input_type_focus {
+	transition: all 200ms linear;
+}
+
+.form__input_type_focus:focus {
+	box-shadow:         0px 0px 4px 0px rgba(41, 94, 232, 1);
+}

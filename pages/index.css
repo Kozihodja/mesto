@@ -17,9 +17,6 @@
 @import url(../blocks/popup/_opened/popup_opened.css); 
 @import url(../blocks/popup/__container/popup__container.css); 
 @import url(../blocks/popup/__form-title/popup__form-title.css); 
-@import url(../blocks/popup/__name/popup__name.css); 
-@import url(../blocks/popup/__job/popup__job.css); 
-@import url(../blocks/popup/__save/popup__save.css); 
 @import url(../blocks/popup/__close/popup__close.css);
  
 @import url(../blocks/elements/__list/elements__list.css); 
@@ -43,8 +40,12 @@
  
 @import url(../blocks/footer/footer.css); 
 @import url(../blocks/footer/__copyright/footer__copyright.css); 
- 
- 
-/*Миксы*/ 
-/*общие стили ссылок и затемнение при наведении*/ 
+  
 @import url(../blocks/button-hover/button-hover.css);
+
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_type/form__input_type_error.css);
+@import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input/_type/form__input_tupe_focus.css);
+@import url(../blocks/form/__submit/form__submit.css);
+@import url(../blocks/form/__submit/__inactive/form__submit_inactive.css);
