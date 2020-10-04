@@ -56,9 +56,29 @@ const initialCards = [
   },
 ];
 
+function listenerEscKeyDown(evt) {
+  if (evt.key === "Escape") {
+    list.forEach((listElement) => {
+      if (listElement.classList.contains("popup_opened")) {
+        listElement.classList.remove("popup_opened");
+        document.removeEventListener("keydown", listenerEscKeyDown);
+      }
+    });
+  }
+}
+
 // Функция добавляет или удаляет класс у элемента
 function togglePopup(elName, className) {
   elName.classList.toggle(className);
+
+  //   если добавить класс(открыть попап), то добавить слушатель нажатия на кнопку esc
+  if (elName.classList.contains(className)) {
+    document.addEventListener("keydown", listenerEscKeyDown);
+  }
+  //   если удалить класс(закрыть попап), то удалить слушатель с конпки esc
+  else {
+    document.removeEventListener("keydown", listenerEscKeyDown);
+  }
 }
 
 // Обработчик события нажатия на кнопку лайк
@@ -67,7 +87,7 @@ function handlerLikeButton(el) {
   likeButton.addEventListener("click", function (evt) {
     const handlerElement = evt.currentTarget;
     const likeIcon = handlerElement.querySelector(".element__like-icon");
-    togglePopup(likeIcon, "element__like-icon_liked");
+    likeIcon.classList.toggle("element__like-icon_liked");
   });
 }
 
@@ -93,7 +113,7 @@ function hendlerImgCliked(el) {
     expandTitle.textContent = cardTitle.textContent;
     expandImgAlt.alt = cardImgAlt.textContent;
 
-    expand.classList.toggle("popup_opened");
+    togglePopup(expand, "popup_opened");
   });
 }
 
@@ -127,16 +147,6 @@ function addNewCard(evt) {
   showNewCard(placeName.value, placeLink.value);
   togglePopup(popupAdd, "popup_opened");
 }
-
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    list.forEach((listElement) => {
-      if (listElement.classList.contains("popup_opened")) {
-        togglePopup(listElement, "popup_opened");
-      }
-    });
-  }
-});
 
 // Функция устанавливает слушатели на кнопки закрытия попапа и оверлей попапа
 const setListenersSwitchForPopup = () => {
