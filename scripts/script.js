@@ -21,7 +21,7 @@ const expandTitle = expand.querySelector(".expand__title");
 const expandImgAlt = expand.querySelector(".expand__img");
 
 const newCardTemplate = document.querySelector("#element").content;
-const cardSection = document.querySelector(".elements__list");
+const cardSection = document.querySelector(".elements__list");ffddd
 
 const initialCards = [
   {
