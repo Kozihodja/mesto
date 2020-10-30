@@ -21,7 +21,7 @@ const expandTitle = expand.querySelector(".expand__title");
 const expandImgAlt = expand.querySelector(".expand__img");
 
 const newCardTemplate = document.querySelector("#element").content;
-const cardSection = document.querySelector(".elements__list");ffddd
+const cardSection = document.querySelector(".elements__list");
 
 const initialCards = [
   {
@@ -79,73 +79,6 @@ function togglePopup(elName, className) {
   else {
     document.removeEventListener("keydown", listenerEscKeyDown);
   }
-}
-
-// Обработчик события нажатия на кнопку лайк
-function handlerLikeButton(el) {
-  const likeButton = el.querySelector(".element__like-button");
-  likeButton.addEventListener("click", function (evt) {
-    const handlerElement = evt.currentTarget;
-    const likeIcon = handlerElement.querySelector(".element__like-icon");
-    likeIcon.classList.toggle("element__like-icon_liked");
-  });
-}
-
-// Обработчик события нажатия иконки удалить
-function handlerDeleteButton(el) {
-  const deleteButton = el.querySelector(".element__delete-icon");
-  deleteButton.addEventListener("click", function (evt) {
-    evt.target.parentNode.remove();
-  });
-}
-
-// Обработчик события нажатия на изображение карточки
-function hendlerImgCliked(el) {
-  const img = el.querySelector(".element__img");
-  img.addEventListener("click", function (evt) {
-    const card = evt.target.parentNode;
-
-    const cardImg = card.querySelector(".element__img");
-    const cardTitle = card.querySelector(".element__title");
-    const cardImgAlt = card.querySelector(".element__img");
-
-    expandImg.src = cardImg.src;
-    expandTitle.textContent = cardTitle.textContent;
-    expandImgAlt.alt = cardImgAlt.textContent;
-
-    togglePopup(expand, "popup_opened");
-  });
-}
-
-// Функция создает новую карточку
-function createNewCard(title, src) {
-  const element = newCardTemplate.cloneNode(true);
-
-  const elementImg = element.querySelector(".element__img");
-  const elementTitle = element.querySelector(".element__title");
-  const elementImgAlt = element.querySelector(".element__img");
-
-  elementImg.src = src;
-  elementTitle.textContent = title;
-  elementImgAlt.alt = `Фотография ${title}`;
-
-  handlerLikeButton(element);
-  handlerDeleteButton(element);
-  hendlerImgCliked(element);
-
-  return element;
-}
-// Функция выводит на экран карточки вначале дом элемента
-function showNewCard(title, src) {
-  cardSection.prepend(createNewCard(title, src));
-}
-
-// Функция добавляет карточку на страницу
-function addNewCard(evt) {
-  evt.preventDefault();
-
-  showNewCard(placeName.value, placeLink.value);
-  togglePopup(popupAdd, "popup_opened");
 }
 
 // Функция устанавливает слушатели на кнопки закрытия попапа и оверлей попапа
