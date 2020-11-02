@@ -1,4 +1,4 @@
-import {validationConfig} from './data.js';
+import {validationConfig} from './script.js';
 
 const formList = Array.from(document.querySelectorAll(".form"));
 

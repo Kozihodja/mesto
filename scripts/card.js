@@ -1,4 +1,4 @@
-import { initialCards } from './data.js';
+import { initialCards } from './script.js';
 
 const popupAdd = document.querySelector(".popup-add");
 const addNewPlaceForm = popupAdd.querySelector(".form");
