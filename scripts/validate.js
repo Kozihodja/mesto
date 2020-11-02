@@ -5,7 +5,13 @@ const formList = Array.from(document.querySelectorAll(".form"));
 class FormValidation {
     constructor(validationConfig, form) {
         this._validationConfig = validationConfig;
-        this._form = form
+        this._form = form;
+        this._submitButton = this._validationConfig.submitButtonSelector;
+        this._input = this._validationConfig.inputSelector
+        this._inputError = this._validationConfig.inputErrorClass;
+        this._errorClass = this._validationConfig.errorClass;
+        this._inactiveButtonClass = this._validationConfig.inactiveButtonClass;
+  
     }
     
     enableValidation() {
@@ -18,16 +24,16 @@ class FormValidation {
     _showInputError(formElement, inputElement, errorMessage) {
         const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
       
-        inputElement.classList.add(this._validationConfig.inputErrorClass);
+        inputElement.classList.add(this._inputError);
         errorElement.textContent = errorMessage;
-        errorElement.classList.add(this._validationConfig.errorClass);
+        errorElement.classList.add(this._errorClass);
     };
       // Функция удаляет класс с ошибкой для input и span
     _hideInputError(formElement, inputElement) {
         const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
       
-        inputElement.classList.remove("form__input_type_error");
-        errorElement.classList.remove("form__input-error_active");
+        inputElement.classList.remove(this._inputError);
+        errorElement.classList.remove(this._errorClass);
         errorElement.textContent = "";
     };
       
@@ -48,18 +54,18 @@ class FormValidation {
       
     _toggleButtonState(inputList, buttonElement) {
         if (this._hasInvalidInput(inputList)) {
-          buttonElement.classList.add("form__submit_inactive");
+          buttonElement.classList.add(this._inactiveButtonClass);
           buttonElement.disabled = true;
         } else {
-          buttonElement.classList.remove("form__submit_inactive");
+          buttonElement.classList.remove(this._inactiveButtonClass);
           buttonElement.disabled = false;
         }
     };
       
       // Фунция ищет все поля в форме
     _setEventListeners(formElement) {
-        this._inputList = Array.from(formElement.querySelectorAll(".form__input"));
-        this._buttonElement = formElement.querySelector(".form__submit");
+        this._inputList = Array.from(formElement.querySelectorAll(this._input));
+        this._buttonElement = formElement.querySelector(this._submitButton);
       
         this._toggleButtonState(this._inputList, this._buttonElement);
       
