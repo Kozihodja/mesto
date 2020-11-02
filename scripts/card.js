@@ -1,5 +1,7 @@
 import { initialCards } from './data.js';
 
+const expand = document.querySelector('.expand');
+
 class Card {
     constructor(name, src) {
         this._name = name;
@@ -20,6 +22,7 @@ class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
+        this._setPopupEventListeners();
 
         this._element.querySelector('.element__title').textContent = this._name;
         this._element.querySelector('.element__img').src = this._src;
@@ -39,41 +42,46 @@ class Card {
         this._element.querySelector('.element__img').addEventListener('click', () => {
             this._handleImgClick();
         });
+      }
 
-        document.querySelector('.popup__close-button').addEventListener('click', (evt) => {
+    _setPopupEventListeners() {
+        expand.querySelector('.popup__close').addEventListener('click', () => {
             this._handleClosePopup();
-          });
+        });
 
-          document.querySelector('.expand').addEventListener('click', (evt) => {
-              console.log(evt.currentTarget);
-            // document.querySelector(evt.currentTarget).classList.remove('popup_opened');
-            // this._handleClosePopup();
-          });
-      }
+        expand.addEventListener("click", () => {
+            this._handleClosePopup();
+        });
+
+        document.addEventListener('keydown', (evt) => {
+            if (evt.key === "Escape") {
+                this._handleClosePopup();
+            }
+        });
+    }
       
-      _handleLikeClick() {
+    _handleLikeClick() {
         this._element.querySelector('.element__like-icon').classList.toggle('element__like-icon_liked');
-      }
+    }
 
-      _handleImgClick() {
+    _handleImgClick() {
 
-        document.querySelector(".expand__img").src = this._src;
-        document.querySelector(".expand__title").textContent = this._name;
+        expand.querySelector(".expand__img").src = this._src;
+        expand.querySelector(".expand__title").textContent = this._name;
 
-        document.querySelector(".expand").classList.add('popup_opened');
-      }
+        expand.classList.add('popup_opened');
+    }
 
-      _handleClosePopup() {
-        document.querySelector('.expand').classList.remove('popup_opened');
-      }
+    _handleClosePopup() {
+        expand.classList.remove('popup_opened');
+    }
 }
 
 initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
+
     const card = new Card(item.name, item.link);
-    // Создаём карточку и возвращаем наружу
+
     const cardElement = card.generateCard();
   
-    // Добавляем в DOM
     document.querySelector(".elements__list").prepend(cardElement);
-  }); 
+  });

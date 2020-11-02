@@ -99,11 +99,6 @@ const setListenersSwitchForPopup = () => {
   });
 };
 
-// Цикл выводит на экран содержание массива initialCards
-initialCards.forEach(function (card) {
-  showNewCard(card.name, card.link);
-});
-
 // При нажатии на кнопку редактировать открыть форму редактирования профиля
 editProfileButton.addEventListener("click", () => {
   nameInput.value = name.textContent;
@@ -125,7 +120,6 @@ addNewPlaceButton.addEventListener("click", () =>
 );
 // При нажатии на кнопку сохранить, в форме добавления новой карточки,
 // добавит новую карточку и закрыть форму
-addNewPlaceForm.addEventListener("submit", addNewCard);
 // Вызов функции, которая ищет все попапы, и навешивает слушатели
 // на события нажатия оверлея и кнопки закрыть
 setListenersSwitchForPopup();
