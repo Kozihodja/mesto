@@ -49,7 +49,7 @@ class Card {
             this._handleClosePopup();
         });
 
-        expand._popup.addEventListener("click", (evt) => {
+        expand.addEventListener("click", (evt) => {
             if (evt.target.classList.contains("popup")) {
                 this._handleClosePopup();
             }
