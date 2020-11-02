@@ -31,20 +31,6 @@ export const initialCards = [
     },
   ];
 
-export const popupList = [
-    {
-        name: 'Edit profile popup',
-        popup: document.querySelector(".popup-edit"),
-        openButton: document.querySelector(".profile__edit-button"),
-    },
-    {
-        name: 'Add card popup',
-        popup: document.querySelector(".popup-add"),
-        openButton: document.querySelector(".profile__add-button"),
-    },
-  ];
-
-  //validationConfig
 export const validationConfig  = {
     formSelector: '.form',
     inputSelector: '.form__input',
@@ -52,4 +38,4 @@ export const validationConfig  = {
     inactiveButtonClass: 'form__submit_inactive',
     inputErrorClass: 'form__input_type_error', 
     errorClass: 'form__input-error_active"',
- }; 
+ };

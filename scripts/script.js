@@ -1,6 +1,6 @@
 const editProfileButton = document.querySelector(".profile__edit-button");
 
-const list = Array.from(document.querySelectorAll(".popup"));
+const popupList = Array.from(document.querySelectorAll(".popup"));
 
 const popup = document.querySelector(".popup-edit");
 const editProfileForm = popup.querySelector(".form");
@@ -9,59 +9,12 @@ const jobInput = editProfileForm.querySelector(".form__input_job");
 const name = document.querySelector(".profile__name");
 const job = document.querySelector(".profile__job");
 
-const popupAdd = document.querySelector(".popup-add");
-const addNewPlaceButton = document.querySelector(".profile__add-button");
-const addNewPlaceForm = popupAdd.querySelector(".form");
-const placeName = popupAdd.querySelector(".form__input_name");
-const placeLink = popupAdd.querySelector(".form__input_job");
-
-const expand = document.querySelector(".expand");
-const expandImg = expand.querySelector(".expand__img");
-const expandTitle = expand.querySelector(".expand__title");
-const expandImgAlt = expand.querySelector(".expand__img");
-
-const newCardTemplate = document.querySelector("#element").content;
-const cardSection = document.querySelector(".elements__list");
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 function listenerEscKeyDown(evt) {
   if (evt.key === "Escape") {
-    list.forEach((listElement) => {
+    popupList.forEach((listElement) => {
       if (listElement.classList.contains("popup_opened")) {
         listElement.classList.remove("popup_opened");
-        document.removeEventListener("keydown", listenerEscKeyDown);
       }
     });
   }
@@ -84,7 +37,7 @@ function togglePopup(elName, className) {
 // Функция устанавливает слушатели на кнопки закрытия попапа и оверлей попапа
 const setListenersSwitchForPopup = () => {
   // установить слушатели на каждом элементе массива
-  list.forEach((listElement) => {
+  popupList.forEach((listElement) => {
     const popupCloseButton = listElement.querySelector(".popup__close");
 
     popupCloseButton.addEventListener("click", (evt) => {
@@ -118,8 +71,6 @@ editProfileForm.addEventListener("submit", (evt) => {
 addNewPlaceButton.addEventListener("click", () =>
   togglePopup(popupAdd, "popup_opened")
 );
-// При нажатии на кнопку сохранить, в форме добавления новой карточки,
-// добавит новую карточку и закрыть форму
 // Вызов функции, которая ищет все попапы, и навешивает слушатели
 // на события нажатия оверлея и кнопки закрыть
 setListenersSwitchForPopup();

@@ -1,5 +1,10 @@
 import { initialCards } from './data.js';
 
+const popupAdd = document.querySelector(".popup-add");
+const addNewPlaceForm = popupAdd.querySelector(".form");
+const placeName = popupAdd.querySelector(".form__input_name");
+const placeLink = popupAdd.querySelector(".form__input_job");
+
 const expand = document.querySelector('.expand');
 
 class Card {
@@ -86,4 +91,10 @@ initialCards.forEach((item) => {
     const cardElement = card.generateCard();
   
     document.querySelector(".elements__list").prepend(cardElement);
+  });
+
+  addNewPlaceForm.addEventListener("submit", () => {
+    const newCard = new Card(placeName.value, placeLink.value);
+    const newCardElement = newCard.generateCard();
+    document.querySelector(".elements__list").prepend(newCardElement);
   });
