@@ -1,9 +1,10 @@
 import { expand, listenerEscKeyDown } from './index.js';
 
 export class Card {
-    constructor(name, src) {
+    constructor(name, src, listenerEscKeyDown) {
         this._name = name;
         this._src = src;
+        this._listenerEscKeyDown = listenerEscKeyDown;
     }
 
     _getTemplate() {
@@ -62,7 +63,7 @@ export class Card {
         expand.querySelector(".expand__img").src = this._src;
         expand.querySelector(".expand__title").textContent = this._name;
         expand.classList.add('popup_opened');
-        document.addEventListener("keydown", listenerEscKeyDown);
+        document.addEventListener("keydown", this._listenerEscKeyDown);
     }
     _handleClosePopup() {
         expand.classList.remove('popup_opened');
