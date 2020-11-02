@@ -1,8 +1,4 @@
-import {validationConfig} from './script.js';
-
-const formList = Array.from(document.querySelectorAll(".form"));
-
-class FormValidation {
+export class FormValidation {
     constructor(validationConfig, form) {
         this._validationConfig = validationConfig;
         this._form = form;
@@ -77,9 +73,3 @@ class FormValidation {
         });
 };
 }
-
-formList.forEach((form) => {
-    const formValid = new FormValidation(validationConfig, form);
-
-    const fElement = formValid.enableValidation();
-});

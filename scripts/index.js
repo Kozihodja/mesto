@@ -1,6 +1,15 @@
+import { Card } from './card.js';
+import { FormValidation } from './validate.js';
+
 const editProfileButton = document.querySelector(".profile__edit-button");
 
 const popupList = Array.from(document.querySelectorAll(".popup"));
+
+const popupAdd = document.querySelector(".popup-add");
+const addNewPlaceButton = document.querySelector(".profile__add-button");
+const addNewPlaceForm = popupAdd.querySelector(".form");
+const placeName = popupAdd.querySelector(".form__input_name");
+const placeLink = popupAdd.querySelector(".form__input_job");
 
 const popup = document.querySelector(".popup-edit");
 const editProfileForm = popup.querySelector(".form");
@@ -9,7 +18,10 @@ const jobInput = editProfileForm.querySelector(".form__input_job");
 const name = document.querySelector(".profile__name");
 const job = document.querySelector(".profile__job");
 
-export const initialCards = [
+export const expand = document.querySelector('.expand');
+const formList = Array.from(document.querySelectorAll(".form"));
+
+const initialCards = [
   {
     name: "Архыз",
     link:
@@ -52,11 +64,12 @@ export const validationConfig  = {
 };
 
 
-function listenerEscKeyDown(evt) {
+export function listenerEscKeyDown(evt) {
   if (evt.key === "Escape") {
     popupList.forEach((listElement) => {
       if (listElement.classList.contains("popup_opened")) {
         listElement.classList.remove("popup_opened");
+        document.removeEventListener("keydown", listenerEscKeyDown);
       }
     });
   }
@@ -65,15 +78,6 @@ function listenerEscKeyDown(evt) {
 // Функция добавляет или удаляет класс у элемента
 function togglePopup(elName, className) {
   elName.classList.toggle(className);
-
-  //   если добавить класс(открыть попап), то добавить слушатель нажатия на кнопку esc
-  if (elName.classList.contains(className)) {
-    document.addEventListener("keydown", listenerEscKeyDown);
-  }
-  //   если удалить класс(закрыть попап), то удалить слушатель с конпки esc
-  else {
-    document.removeEventListener("keydown", listenerEscKeyDown);
-  }
 }
 
 // Функция устанавливает слушатели на кнопки закрытия попапа и оверлей попапа
@@ -81,6 +85,8 @@ const setListenersSwitchForPopup = () => {
   // установить слушатели на каждом элементе массива
   popupList.forEach((listElement) => {
     const popupCloseButton = listElement.querySelector(".popup__close");
+
+    document.addEventListener("keydown", listenerEscKeyDown);
 
     popupCloseButton.addEventListener("click", (evt) => {
       togglePopup(evt.target.closest(".popup"), "popup_opened");
@@ -116,3 +122,24 @@ addNewPlaceButton.addEventListener("click", () =>
 // Вызов функции, которая ищет все попапы, и навешивает слушатели
 // на события нажатия оверлея и кнопки закрыть
 setListenersSwitchForPopup();
+
+initialCards.forEach((item) => {
+
+  const card = new Card(item.name, item.link);
+
+  const cardElement = card.generateCard();
+
+  document.querySelector(".elements__list").prepend(cardElement);
+});
+
+addNewPlaceForm.addEventListener("submit", () => {
+  const newCard = new Card(placeName.value, placeLink.value);
+  const newCardElement = newCard.generateCard();
+  document.querySelector(".elements__list").prepend(newCardElement);
+});
+
+formList.forEach((form) => {
+  const formValid = new FormValidation(validationConfig, form);
+
+  const fElement = formValid.enableValidation();
+});
