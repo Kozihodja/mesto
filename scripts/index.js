@@ -63,7 +63,7 @@ export const validationConfig  = {
   errorClass: 'form__input-error_active"',
 };
 
-
+// Обработчик события нажатия на кнопку
 export function listenerEscKeyDown(evt) {
   if (evt.key === "Escape") {
     popupList.forEach((listElement) => {
@@ -80,7 +80,7 @@ function togglePopup(elName, className) {
   elName.classList.toggle(className);
 }
 
-// Функция устанавливает слушатели на кнопки закрытия попапа и оверлей попапа
+// Функция устанавливает слушатели на кнопку закрытия попапа, оверлей попапа
 const setListenersSwitchForPopup = () => {
   // установить слушатели на каждом элементе массива
   popupList.forEach((listElement) => {
@@ -115,14 +115,10 @@ editProfileForm.addEventListener("submit", (evt) => {
   togglePopup(popup, "popup_opened");
 });
 
-// При нажатии на кнопку добавить - открыть форму добавления новой карточки
-addNewPlaceButton.addEventListener("click", () =>
-  togglePopup(popupAdd, "popup_opened")
-);
 // Вызов функции, которая ищет все попапы, и навешивает слушатели
-// на события нажатия оверлея и кнопки закрыть
 setListenersSwitchForPopup();
 
+// Создание карточек на основе исходного массива
 initialCards.forEach((item) => {
 
   const card = new Card(item.name, item.link);
@@ -132,12 +128,14 @@ initialCards.forEach((item) => {
   document.querySelector(".elements__list").prepend(cardElement);
 });
 
+// Добавление карточек
 addNewPlaceForm.addEventListener("submit", () => {
   const newCard = new Card(placeName.value, placeLink.value);
   const newCardElement = newCard.generateCard();
   document.querySelector(".elements__list").prepend(newCardElement);
 });
 
+// Проверка на валидность формы
 formList.forEach((form) => {
   const formValid = new FormValidation(validationConfig, form);
 
