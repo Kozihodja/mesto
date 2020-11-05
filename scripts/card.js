@@ -26,7 +26,7 @@ export class Card {
         this._cardImg .alt = 'На фотографии - ' + this._name;
         return this._element;
     }
-
+  
     _setEventListeners() {
         this._element.querySelector('.element__like-button').addEventListener('click', () => {
             this._handleLikeClick();
@@ -44,6 +44,6 @@ export class Card {
     }
 
     _handleDeleteIconClick() {
-        this._element.remove();
+        this._element.remove(); 
     }
 }
