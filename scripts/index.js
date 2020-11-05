@@ -59,8 +59,7 @@ const initialCards = [
 export function handleImgClick(name, src) {
   imagePopup.querySelector(".expand__title").textContent = name;
   imagePopup.querySelector(".expand__img").src = src;
-  imagePopup.classList.add('popup_opened');
-  document.addEventListener("keydown", handleEscKeyDown);
+  togglePopup(imagePopup);
 };
 
 export const validationConfig  = {
@@ -139,12 +138,13 @@ editProfileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  togglePopup(editPopup, "popup_opened");
+  togglePopup(editPopup);
 });
 
 // Обработчик события нажатия на кнопку сохранить в форме добавления карточки
 addNewPlaceForm.addEventListener("submit", () => {
   elementsList.prepend(createCard(placeName.value, placeLink.value));
+  togglePopup(popupAdd);
 });
 
 // Вызов функции, которая ищет все попапы, и навешивает слушатели
