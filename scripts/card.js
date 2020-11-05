@@ -44,6 +44,6 @@ export class Card {
     }
 
     _handleDeleteIconClick() {
-        this._element.remove(); 
+        this._element.remove();  
     }
 }
