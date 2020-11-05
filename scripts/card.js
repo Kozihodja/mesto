@@ -1,16 +1,15 @@
-import { expand, listenerEscKeyDown } from './index.js';
-
 export class Card {
-    constructor(name, src, listenerEscKeyDown) {
+    constructor(name, src, cardTemplate, handleImgClick)
+        {
         this._name = name;
         this._src = src;
-        this._listenerEscKeyDown = listenerEscKeyDown;
+        this._cardTemplate = cardTemplate;
+        this._handleImgClick = handleImgClick;
     }
 
     _getTemplate() {
 
-        const cardElement = document
-        .querySelector('#element')
+        const cardElement = this._cardTemplate
         .content
         .querySelector('.element')
         .cloneNode(true);
@@ -20,12 +19,11 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
+        this._cardImg = this._element.querySelector('.element__img')
         this._setEventListeners();
-
         this._element.querySelector('.element__title').textContent = this._name;
-        this._element.querySelector('.element__img').src = this._src;
-        this._element.querySelector('.element__img').alt = 'На фотографии - ' + this._name;
-
+        this._cardImg .src = this._src;
+        this._cardImg .alt = 'На фотографии - ' + this._name;
         return this._element;
     }
 
@@ -34,38 +32,18 @@ export class Card {
             this._handleLikeClick();
         });
         this._element.querySelector(".element__delete-icon").addEventListener("click", () => {
-            this._element.remove();
+            this._handleDeleteIconClick();
         });
-        this._element.querySelector('.element__img').addEventListener('click', () => {
-            this._handleImgClick();
-        });
+        this._cardImg.addEventListener('click', () => {
+            this._handleImgClick(this._name, this._src);
+        })
       }
-    _setPopupEventListeners() {
-        expand.querySelector('.popup__close').addEventListener('click', () => {
-            this._handleClosePopup();
-        });
-        expand.addEventListener("click", (evt) => {
-            if (evt.target.classList.contains("popup")) {
-                this._handleClosePopup();
-            }
-          });
-        document.addEventListener('keydown', (evt) => {
-            if (evt.key === "Escape") {
-                this._handleClosePopup();
-            }
-        });
-    }
-      
+
     _handleLikeClick() {
         this._element.querySelector('.element__like-icon').classList.toggle('element__like-icon_liked');
     }
-    _handleImgClick() {
-        expand.querySelector(".expand__img").src = this._src;
-        expand.querySelector(".expand__title").textContent = this._name;
-        expand.classList.add('popup_opened');
-        document.addEventListener("keydown", this._listenerEscKeyDown);
-    }
-    _handleClosePopup() {
-        expand.classList.remove('popup_opened');
+
+    _handleDeleteIconClick() {
+        this._element.remove();
     }
 }
