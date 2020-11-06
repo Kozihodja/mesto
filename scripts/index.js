@@ -152,5 +152,5 @@ setListenersSwitchForPopup();
 
 // Создание карточек на основе исходного массива
 initialCards.forEach((item) => {
-  document.querySelector(".elements__list").prepend(createCard(item.name, item.link));
+  elementsList.prepend(createCard(item.name, item.link));
 });
