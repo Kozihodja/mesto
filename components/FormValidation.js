@@ -11,9 +11,9 @@ export class FormValidation  {
     }
     
     enableValidation() {
-        this._form.addEventListener("submit", (evt) => {
-            evt.preventDefault();
-          });
+        // this._form.addEventListener("submit", (evt) => {
+        //     evt.preventDefault();
+        //   });
           this._setEventListeners(this._form);
     }
 
