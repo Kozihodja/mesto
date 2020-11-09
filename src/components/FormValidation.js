@@ -1,7 +1,6 @@
 export class FormValidation  {
     constructor(validationConfig, form) {
         this._validationConfig = validationConfig;
-        this._form = form;
         this._submitButton = this._validationConfig.submitButtonSelector;
         this._input = this._validationConfig.inputSelector
         this._inputError = this._validationConfig.inputErrorClass;
@@ -10,11 +9,9 @@ export class FormValidation  {
   
     }
     
-    enableValidation() {
-        // this._form.addEventListener("submit", (evt) => {
-        //     evt.preventDefault();
-        //   });
-          this._setEventListeners(this._form);
+    enableValidation(form) {
+      this._form = form;
+      this._setEventListeners(this._form);
     }
 
     _showInputError(formElement, inputElement, errorMessage) {

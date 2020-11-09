@@ -1,8 +1,6 @@
 export class Card {
-    constructor(name, src, cardTemplate, handleCardClick)
+    constructor(cardTemplate, handleCardClick)
         {
-        this._name = name;
-        this._src = src;
         this._cardTemplate = cardTemplate;
         this._handleCardClick = handleCardClick;
     }
@@ -17,7 +15,10 @@ export class Card {
         return cardElement;
     }
 
-    generateCard() {
+    generateCard(name, src) {
+        this._name = name;
+        this._src = src;
+
         this._element = this._getTemplate();
         this._cardImg = this._element.querySelector('.element__img')
         this._setEventListeners();
@@ -44,6 +45,7 @@ export class Card {
     }
 
     _handleDeleteIconClick() {
-        this._element.remove(); 
+        this._element.remove();
+        this._element = '';
     }
 }

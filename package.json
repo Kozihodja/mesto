@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "- Грид верстка\r - Js\r - Git\r - Основы ООП",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "build": "rd /s /q dist && webpack",
     "dev": "webpack-dev-server --open  --watch"
