@@ -20,7 +20,7 @@ const user = new UserInfo(".profile__name", ".profile__job");
 // Экземпляр формы редактирования профиля
 const popupEdit = new PopupWithForm({ 
   popupSelector: ".popup-edit", 
-  handleFormSubmit: (list) => { 
+  handleFormSubmit: (list) => {
     user.getUserInfo(list.userName, list.userJob); 
   } 
 }); 
@@ -30,14 +30,17 @@ addNewPlaceButton.addEventListener("click", () =>
     formValid.enableValidation(popupAdd._popup.querySelector('.form'));
     popupAdd.open();
     popupAdd.setEventListeners();
+    
   } 
 );
- 
+popupAdd.submit();
 editProfileButton.addEventListener("click", () =>  
   {  
     user.setUserInfo(nameInput, jobInput, name.textContent, job.textContent); 
     formValid.enableValidation(popupEdit._popup.querySelector('.form'));
     popupEdit.open();
     popupEdit.setEventListeners();
+    
   } 
 );
+popupEdit.submit();
