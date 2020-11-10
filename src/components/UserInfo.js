@@ -5,13 +5,13 @@ export class UserInfo {
 
     }
 
-    getUserInfo(userName, userJob) {
+    setUserInfo(userName, userJob) {
         
         this._name.textContent = userName;
         this._info.textContent = userJob;
     }
 
-    setUserInfo(nameInput, jobInput, userName, userJob) {
+    getUserInfo(nameInput, jobInput, userName, userJob) {
         nameInput.value = userName;
         jobInput.value = userJob;
     }

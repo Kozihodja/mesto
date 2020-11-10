@@ -3,13 +3,13 @@ export const editProfileButton = document.querySelector(".profile__edit-button")
 export const addNewPlaceButton = document.querySelector(".profile__add-button");
 
 const editPopup = document.querySelector(".popup-edit");
-const editProfileForm = editPopup.querySelector(".form");
+export const editProfileForm = editPopup.querySelector(".form-edit");
 export const nameInput = editProfileForm.querySelector(".form__input_name");
 export const jobInput = editProfileForm.querySelector(".form__input_job");
 export const name = document.querySelector(".profile__name");
 export const job = document.querySelector(".profile__job");
 
-export const formList = Array.from(document.querySelectorAll(".form"));
+export const addCardForm = document.querySelector(".form-add");
 
 export const cardTemplate = document.querySelector('#element');
 export const cardListSection = '.elements__list';

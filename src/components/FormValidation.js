@@ -1,6 +1,7 @@
 export class FormValidation  {
     constructor(validationConfig, form) {
         this._validationConfig = validationConfig;
+        this._form = form;
         this._submitButton = this._validationConfig.submitButtonSelector;
         this._input = this._validationConfig.inputSelector
         this._inputError = this._validationConfig.inputErrorClass;
@@ -9,8 +10,7 @@ export class FormValidation  {
   
     }
     
-    enableValidation(form) {
-      this._form = form;
+    enableValidation() {
       this._setEventListeners(this._form);
     }
 
@@ -54,7 +54,13 @@ export class FormValidation  {
           buttonElement.disabled = false;
         }
     };
-      
+    
+    disabledSubmitButton() {
+      this._button = this._form.querySelector(this._submitButton);
+      this._button.classList.add(this._inactiveButtonClass);
+      this._button.disabled = true;
+    }
+
       // Фунция ищет все поля в форме
     _setEventListeners(formElement) {
         this._inputList = Array.from(formElement.querySelectorAll(this._input));
