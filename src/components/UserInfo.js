@@ -11,8 +11,10 @@ export class UserInfo {
         this._info.textContent = userJob;
     }
 
-    getUserInfo(nameInput, jobInput, userName, userJob) {
-        nameInput.value = userName;
-        jobInput.value = userJob;
+    getUserInfo() {
+        return {
+            userName: this._name.textContent,
+            userJob: this._info.textContent
+        }
     }
 }

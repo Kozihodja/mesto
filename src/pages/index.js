@@ -2,11 +2,13 @@ import { editProfileForm, addCardForm, editProfileButton, addNewPlaceButton, nam
 import { PopupWithForm } from '../components/PopupWithForm.js'; 
 import { FormValidation } from '../components/FormValidation.js'; 
 import { UserInfo } from '../components/UserInfo.js'; 
-import { displayCards, createNewCard } from '../utils/utils.js'; 
+import { popupShowCard, displayCards, createNewCard } from '../utils/utils.js'; 
  
 import './index.css'; 
 // Отображение карточек на странице из изходного массива данных
 displayCards(initialCards); 
+
+popupShowCard.setEventListeners();
 // Экземпляр класса валидации формы
 const editProfileFormValid = new FormValidation(validationConfig, editProfileForm);
 const addCardFormValid = new FormValidation(validationConfig, addCardForm);
@@ -39,7 +41,9 @@ addNewPlaceButton.addEventListener("click", () =>
 popupAdd.setEventListeners();
 editProfileButton.addEventListener("click", () =>  
   {  
-    user.getUserInfo(nameInput, jobInput, name.textContent, job.textContent);
+    const userInfo = user.getUserInfo();
+    nameInput.value = userInfo.userName;
+    jobInput.value = userInfo.userJob;
     popupEdit.open();   
   } 
 );

@@ -4,17 +4,14 @@ import { PopupWithImage } from '../components/PopupWithImage';
 import { cardTemplate, cardListSection } from './data.js'; 
  
 
-const popupShowCard = new PopupWithImage(".popup-card"); 
+export const popupShowCard = new PopupWithImage(".popup-card"); 
 export function handleCardClick(name, src) { 
   popupShowCard.open(name, src);
-  popupShowCard.setEventListeners();
 }; 
 
 const cardList = new Section({  
   renderer: (item) => { 
-    const card = new Card(item.name, item.link, cardTemplate, handleCardClick); 
-    const cardElement = card.generateCard(); 
-    cardList.addItem(cardElement); 
+    createNewCard(item);
   }, 
 }, cardListSection);
   // отображает содержимое исходного массива  
@@ -24,7 +21,6 @@ export const displayCards = (list) => {
 
 // Отображает новую карточку
 export const createNewCard = (list) => { 
-  console.log(list);
   const newCard = new Card(list.name, list.link, cardTemplate, handleCardClick); 
   const cardElement = newCard.generateCard(); 
 
