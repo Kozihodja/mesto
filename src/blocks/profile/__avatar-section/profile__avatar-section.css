@@ -1,0 +1,19 @@
+.profile__avatar-section {
+  border-radius: 50%;
+  width: 120px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
+
+.profile__avatar-section:hover .profile__avatar-overlay {
+  opacity: 0.8;
+}
+
+.profile__avatar-section:hover .profile__edit-avatar {
+  display: flex;
+  cursor: pointer;
+}

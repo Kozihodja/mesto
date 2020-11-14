@@ -1,0 +1,7 @@
+.profile__avatar-overlay {
+  grid-area: 1 / 1 / 2 / 2;
+
+  background-color: #2a2c2f;
+  opacity: 0.2;
+  transition: opacity 200ms linear, transform 200ms linear;
+}

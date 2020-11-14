@@ -6,7 +6,10 @@
 @import url(../blocks/header/__logo/header__logo.css);
 
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar-section/profile__avatar-section.css);
+@import url(../blocks/profile/__avatar-overlay/profile__avatar-ovarlay.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
@@ -26,9 +29,12 @@
 @import url(../blocks/element/__img/_hover/element__img_hover.css);
 @import url(../blocks/element/__content/element__content.css);
 @import url(../blocks/element/__title/element__title.css);
+@import url(../blocks/element/__like-section/element__like-section.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/element/__like-icon/element__like-icon.css);
+@import url(../blocks/element/__like-count/element__like-count.css);
 @import url(../blocks/element/__delete-icon/element__delete-icon.css);
+@import url(../blocks/element/__delete-icon/_inactivate/element__delete-icon_inactivate.css);
 @import url(../blocks/element/__like-icon/_liked/element__like-icon_liked.css);
 
 @import url(../blocks/expand/expand.css);
@@ -48,4 +54,4 @@
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__input/_type/form__input_tupe_focus.css);
 @import url(../blocks/form/__submit/form__submit.css);
-@import url(../blocks/form/__submit/__inactive/form__submit_inactive.css);
+@import url(../blocks/form/__submit/__inactive/form__submit_inactive.css); ;

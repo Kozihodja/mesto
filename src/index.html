@@ -15,11 +15,17 @@
 	<main class="main">
 
 		<section class="profile">
-			<img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
+			<div class="profile__avatar-section">
+				<div class="profile__avatar-overlay"></div>
+				<img class="profile__avatar" alt="Аватар">
+				<a class="profile__edit-avatar" target="_blank">
+					<img src="./images/editAvatar.svg">
+				</a>
+			</div>
 			<div class="profile__info">
-				<h1 class="profile__name">Жак-Ив Кусто</h1>
+				<h1 class="profile__name"></h1>
 				<button type="button" class="profile__edit-button button-hover" aria-label="Редактировать профиль"></button>
-				<p class="profile__job">Исследователь океана</p>
+				<p class="profile__job"></p>
 			</div>
 			<button type="button" class="profile__add-button button-hover" aria-label="Добавить"></button>
 		</section>
@@ -64,17 +70,42 @@
 		</div>
 	</div>
 
+	<div class="popup popup-delete" tabindex="0"> 
+		<div class="popup__container">
+			<button type="button" class="popup__close button-hover" aria-label="Закрыть"></button>
+			<h3 class="popup__form-title">Вы уверены?</h3>
+			<form class="form form-edit" name="profile-edit-form" method="post" novalidate>
+				<button type="submit" class="form__submit" aria-label="Сохранить">Да</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="popup popup-change-avatar" tabindex="0">
+		<div class="popup__container">
+			<button type="button" class="popup__close button-hover" aria-label="Закрыть"></button>
+			<h3 class="popup__form-title">Обновить аватар</h3>
+			<form class="form form-change-avatar" name="element-add-form" method="post" novalidate>
+				<input type="url" name="link" id="placeUrl-input" class="form__input form__input_job form__input_type_focus" placeholder="Ссылка на картинку" required>
+				<span id="placeUrl-input-error" class="form__input-error"></span>
+				<button type="submit" class="form__submit" aria-label="Сохранить">Сохранить</button>
+			</form>
+		</div>
+	</div>
+
 	<template id="element">
 		<li class="element">
-			<img class="element__delete-icon button-hover" src="./images/delete.svg" alt="Иконка удалить">
+			<img class="element__delete-icon button-hover" src="./images/delete.svg" alt="Иконка удалить" display:none>
 			<img class="element__img element__img_hover">
 			<div class="element__content">
 				<h2 class="element__title"></h2>
-				<button type="button" class="element__like-button button-hover" aria-label="Поставить лайк">
-					<svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg" class="element__like-icon">
-						<path d="M18.8005 1.95849L18.8023 1.96024C20.7437 3.88233 20.7462 7.03905 18.8005 8.98466L10.361 17.4238L1.94628 9.00951C1.94569 9.00892 1.94511 9.00832 1.94453 9.00772C1.0188 8.06185 0.5 6.81051 0.5 5.48217C0.5 4.14855 1.00122 2.89987 1.94265 1.95849L1.94266 1.95849L1.94441 1.95672C3.86629 0.0157068 7.02186 0.0131363 8.96748 1.97793L8.96922 1.97967L10.0074 3.01784L10.3646 3.37496L10.7181 3.01425L11.7545 1.95673C13.6994 0.0138381 16.8563 0.014425 18.8005 1.95849Z" stroke="black"/>
-					</svg>
-				</button>
+				<div class="element__like-section">
+					<button type="button" class="element__like-button button-hover" aria-label="Поставить лайк">
+						<svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg" class="element__like-icon">
+							<path d="M18.8005 1.95849L18.8023 1.96024C20.7437 3.88233 20.7462 7.03905 18.8005 8.98466L10.361 17.4238L1.94628 9.00951C1.94569 9.00892 1.94511 9.00832 1.94453 9.00772C1.0188 8.06185 0.5 6.81051 0.5 5.48217C0.5 4.14855 1.00122 2.89987 1.94265 1.95849L1.94266 1.95849L1.94441 1.95672C3.86629 0.0157068 7.02186 0.0131363 8.96748 1.97793L8.96922 1.97967L10.0074 3.01784L10.3646 3.37496L10.7181 3.01425L11.7545 1.95673C13.6994 0.0138381 16.8563 0.014425 18.8005 1.95849Z" stroke="black"/>
+						</svg>
+					</button>
+					<h2 class="element__like-count"></h2>
+				</div>
 			</div>
 		</li>
 	</template>

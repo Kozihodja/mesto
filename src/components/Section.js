@@ -8,7 +8,7 @@ export class Section {
         this._initialArray = data;
         this._initialArray.forEach((item) => { 
             this._renderer(item); 
-        }); 
+        });
     } 
  
     addItem(element) { 

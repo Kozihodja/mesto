@@ -1,9 +1,10 @@
 .element__like-button {
   display: block;
-	min-width: 21px;
-	padding: 0;
+  min-width: 21px;
+  padding: 0;
   background-size: 100%;
   border: none;
   outline: none;
   background-color: #fff;
+  object-fit: cover;
 }
