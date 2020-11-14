@@ -50,10 +50,10 @@ const popupAdd = new PopupWithForm({
     // то значение тру
     const owner = true;
     // Отправляет запрос на сервер со значениями полей
-    api.addNewCard(list.placeName, list.placeImg)
+    api.addNewCard(list)
     // В случае успешного запроса, отобразить новую карточку на странице 
-      .then(function(data) {
-        createNewCard(data, owner);
+      .then(function(result) {
+        createNewCard(result, owner);
      })
     //  В случае ошибки, вывести в консоль ошибку
      .catch(function(error) {

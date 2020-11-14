@@ -22,13 +22,13 @@ export class Api {
         return this._requestGet(`${this._baseUrl}/cards`);
     }
 
-    addNewCard(inputName, inputAbout){
+    addNewCard(data){
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name: inputName,
-                link: inputAbout
+                name: data.placeName,
+                link: data.placeImg
             })
         }).then(res => {
             if (res.ok) {
