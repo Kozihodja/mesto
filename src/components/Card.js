@@ -1,17 +1,18 @@
-import { api, userProfile } from "../utils/utils";
+import { api } from "../utils/utils";
 
 export class Card { 
-    constructor(data, isOwnCard, userProfile, cardTemplate, handleCardClick, handleDeleteCard) 
+    constructor(data, isOwnCard, userId, cardTemplate, handleCardClick, handleDeleteCard, hendleLikeClick) 
         { 
         this._name = data.name; 
         this.link = data.link; 
         this._own = isOwnCard;
         this._id = data._id;
-        this._user = userProfile;
+        this._userId = userId;
         this._like = data.likes;
         this._cardTemplate = cardTemplate; 
         this._handleCardClick = handleCardClick;
         this._handleDeleteCard = handleDeleteCard;
+        this._hendleLikeClick = hendleLikeClick;
     } 
  
     _getTemplate() { 
@@ -44,7 +45,7 @@ export class Card {
    
     _setEventListeners() { 
         this._element.querySelector('.element__like-button').addEventListener('click', () => { 
-            this._handleLikeClick(); 
+            this._hendleLikeClick(this._element, this._id); 
         }); 
         this._element.querySelector(".element__delete-icon").addEventListener("click", () => { 
             this._handleDeleteIconClick(); 
@@ -53,36 +54,12 @@ export class Card {
 
             this._handleCardClick(this._name, this.link); 
         }) 
-      } 
- 
-    _handleLikeClick() {
-        this._likeBtn =  this._element.querySelector('.element__like-icon');
-        if (this._likeBtn.classList.contains('element__like-icon_liked')) {
-            this._likeBtn.classList.remove('element__like-icon_liked');
-            api.deleteLike(this._id)
-            .then(result => {
-                this._likeCountElement.textContent = result.likes.length;
-              })
-              .catch((err) => {
-                console.log(`При удалении лайка возникла ошибка: ${err}`);
-              });
-        }
-        else {
-            this._likeBtn.classList.add('element__like-icon_liked');
-            api.addLike(this._id)
-            .then(result => {
-                this._likeCountElement.textContent = result.likes.length;
-              })
-              .catch((err) => {
-                console.log(`При добавлении лайка возникла ошибка: ${err}`);
-              });    
-        }
-    }
+      }
 
     _likeBtnState() {
         this._likeBtn =  this._element.querySelector('.element__like-icon');
         this._isUserLiked = this._like.some( (el) => {
-               if (el._id==userProfile._id) {
+               if (el._id === this._userId) {
                   return true;
                }
             });

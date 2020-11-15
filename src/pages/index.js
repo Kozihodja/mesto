@@ -8,24 +8,26 @@ import './index.css';
 
 const user = new UserInfo(".profile__name", ".profile__job", ".profile__avatar");
 
+Promise.all([
+  api.getUserInfo(), 
+  api.getInitialCards()
+])
+  .then(([userInfo, cards]) => {
+    // userProfileInfo.setUserInfo(userInfo)
+    // При успешном выполнении запроса вызывать метод класса user, 
+    // который устанавливает данные пользователя в разметку
+    user.setUserInfo(userInfo.name, userInfo.about);
+    // Вызывать метод класса user, который установит аватар пользователя
+    user.setUserAvatar(userInfo.avatar);
+    // Запишет полученные данные в объет userProfile
+    userProfile._id = userInfo._id;
 
-// Получить данные ползователя
-api.getUserInfo().then(result => {
-  // При успешном выполнении запроса вызывать метод класса user, 
-  // который устанавливает данные пользователя в разметку
-  user.setUserInfo(result.name, result.about);
-  // Вызывать метод класса user, который установит аватар пользователя
-  user.setUserAvatar(result.avatar);
-  // Запишет полученные данные в объет userProfile
-  userProfile.name = result.name;
-  userProfile.about = result.about;
-  userProfile._id = result._id;
-  userProfile.avatar = result.avatar;
-})
-.catch((err) => {
-  // Высести ошибку
-  console.log(`При загрузки информации о пользователе возникла ошибка: ${err}`);
-});
+    displayCards(cards);
+  })
+  .catch((err) => {
+    console.log(`При загрузке исходных данных возникла ошибка: ${err}`);
+  }); 
+
 // Установить слушатели на попуп для показа изображений
 popupShowCard.setEventListeners();
 // Установить слушатели на попуп потверждения удаления
@@ -54,6 +56,7 @@ const popupAdd = new PopupWithForm({
     // В случае успешного запроса, отобразить новую карточку на странице 
       .then(function(result) {
         createNewCard(result, owner);
+        popupAdd.close();
      })
     //  В случае ошибки, вывести в консоль ошибку
      .catch(function(error) {
@@ -74,6 +77,7 @@ const popupEdit = new PopupWithForm({
     api.setUserInfo(list.userName, list.userJob)
     .then(function(data) {
       user.setUserInfo(list.userName, list.userJob);
+      popupEdit.close();
    })
    .catch(function(error) {
      console.log(`При редактировании профиля возникла ошибка ${error}`);
@@ -87,14 +91,19 @@ const popupEdit = new PopupWithForm({
 // Экземпляр формы редактирования аватара
 const popupChengeAvatar = new PopupWithForm({ 
   popupSelector: ".popup-change-avatar", 
-  handleFormSubmit: (list) => {
+  handleFormSubmit: (list, form) => {
+    renderLoading(true, form);
     api.changeUserAvatar(list)
       .then(function(data) {
         user.setUserAvatar(list.link);
+        popupChengeAvatar.close();
      })
      .catch(function(error) {
        console.log(`Не удалось обновить аватар. Ошибка: ${error}`);
-     });
+     })
+     .finally(() => {
+      renderLoading(false, form);
+    });
   } 
 });
 popupChengeAvatar.setEventListeners();
@@ -124,14 +133,3 @@ editProfileButton.addEventListener("click", () =>
   } 
 );
 popupEdit.setEventListeners();
-
-// Запросить с сервера исходный массив карточек
-api.getInitialCards()
-// В случае успешного запроса, отобразить исходный массив карточек
-.then(result => {
-  displayCards(result);
-})
-// В случае провала, отобразить ошибку
-.catch((err) => {
-  console.log(`При загрузке исходных карточек возникла ошибка: ${err}`);
-}); 

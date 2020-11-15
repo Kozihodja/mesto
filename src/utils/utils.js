@@ -41,10 +41,6 @@ export const userProfile = {
 
 const cardList = new Section({  
   renderer: (item) => {
-    const img = new Image();
-    img.src = item.link;
-    // Если изображение подгрузилось, то выводим карточку
-    img.onload = function () {
       // Проверяем создал ли пользователь текущую карточку
       if (item.owner._id === userProfile._id) {
         const owner = true;
@@ -54,12 +50,6 @@ const cardList = new Section({
         const owner = false;
         createNewCard(item, owner);
       }
-    }
-
-    // Если изображение не подгрузилось, то выводим в консоль сообщение об ошибке
-    img.onerror = function () { 
-      console.log(`Не удалось загрузить изображение "${item.name}". Проверьте ссылку на изображение: ${item.link}`); 
-    }
   }, 
 }, cardListSection);
   // отображает содержимое исходного массива  
@@ -67,10 +57,35 @@ export const displayCards = (list) => {
     cardList.renderItems(list); 
 }
 
+const hendleLikeClick = (card, cardId) => {
+  const likeBtn =  card.querySelector('.element__like-icon');
+  const countElement = card.querySelector('.element__like-count')
+        if (likeBtn.classList.contains('element__like-icon_liked')) {
+            likeBtn.classList.remove('element__like-icon_liked');
+            api.deleteLike(cardId)
+            .then(result => {
+              countElement.textContent = result.likes.length;
+              })
+              .catch((err) => {
+                console.log(`При удалении лайка возникла ошибка: ${err}`);
+              });
+        }
+        else { 
+            api.addLike(cardId)
+            .then(result => {
+                countElement.textContent = result.likes.length;
+                likeBtn.classList.add('element__like-icon_liked');
+              })
+              .catch((err) => {
+                console.log(`При добавлении лайка возникла ошибка: ${err}`);
+              });    
+        }
+}
+
 // Отобразить новую карточку
 export const createNewCard = (list, owner) => {
   
-  const newCard = new Card(list, owner, userProfile, cardTemplate, handleCardClick, handleDeleteCard);
+  const newCard = new Card(list, owner, userProfile._ids, cardTemplate, handleCardClick, handleDeleteCard, hendleLikeClick);
   const cardElement = newCard.generateCard(); 
 
   cardList.addItem(cardElement);
