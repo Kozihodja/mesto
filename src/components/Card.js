@@ -1,5 +1,3 @@
-import { api } from "../utils/utils";
-
 export class Card { 
     constructor(data, isOwnCard, userId, cardTemplate, handleCardClick, handleDeleteCard, hendleLikeClick) 
         { 
