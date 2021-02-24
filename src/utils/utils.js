@@ -17,7 +17,6 @@ export const popupDeleteCard = new PopupConfirmation({
     api.deleteCard(id)
     .then(result => {
       element.remove();
-      popupDeleteCard.close();
    })
    .catch(function(err) {
      console.log(`При удалении карточки возникла ошибка: ${err}`);
@@ -30,14 +29,15 @@ export function handleDeleteCard(id, element) {
 };
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
-    headers: {
-      authorization: '8686f633-5196-4d18-a390-f58a0ff5520c',
-      'Content-Type': 'application/json'
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-17',
+  headers: {
+    authorization: 'b1d0bc39-bad2-4f4c-b6fa-24e41341eb5a',
+    'Content-Type': 'application/json'
   }
 });
 
-export const userProfile = {}
+export const userProfile = {
+}
 
 const cardList = new Section({  
   renderer: (item) => {
