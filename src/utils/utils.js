@@ -33,8 +33,6 @@ export const api = new Api({
   headers: {
     authorization: '8686f633-5196-4d18-a390-f58a0ff5520c',
     'Content-Type': 'application/json'
-
-  
   }
 });
 
