@@ -23,6 +23,7 @@ Promise.all([
     userProfile._id = userInfo._id;
 
     displayCards(cards);
+    console.log(1);
   })
   .catch((err) => {
     console.log(`При загрузке исходных данных возникла ошибка: ${err}`);
