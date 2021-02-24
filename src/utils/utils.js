@@ -29,10 +29,12 @@ export function handleDeleteCard(id, element) {
 };
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-17',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
   headers: {
-    authorization: 'b1d0bc39-bad2-4f4c-b6fa-24e41341eb5a',
+    authorization: '8686f633-5196-4d18-a390-f58a0ff5520c',
     'Content-Type': 'application/json'
+
+  
   }
 });
 
