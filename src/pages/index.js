@@ -13,7 +13,6 @@ Promise.all([
   api.getInitialCards()
 ])
   .then(([userInfo, cards]) => {
-    // userProfileInfo.setUserInfo(userInfo)
     // При успешном выполнении запроса вызывать метод класса user, 
     // который устанавливает данные пользователя в разметку
     user.setUserInfo(userInfo.name, userInfo.about);
@@ -26,7 +25,7 @@ Promise.all([
   })
   .catch((err) => {
     console.log(`При загрузке исходных данных возникла ошибка: ${err}`);
-  }); 
+  });
 
 // Установить слушатели на попуп для показа изображений
 popupShowCard.setEventListeners();
